@@ -10,14 +10,11 @@ from wtforms.validators import InputRequired, Length, Regexp, NumberRange, Valid
 
 from datetime import datetime, timedelta
 from random import randint
-import logging
 
 import sys
 
 app = Flask(__name__)
 
-#Add logging
-app.logger.setLevel(logging.DEBUG) 
 
 # Flask-WTF enryption key 
 app.config['SECRET_KEY'] = 'MLXH243GssUWwKdTWS7FDhdwYF56wPj8'

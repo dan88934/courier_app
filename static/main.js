@@ -93,8 +93,10 @@ function handleFormSubmit(event) {
     // Collect form data as JSON
     const json = JSON.stringify(formJSON, null, 2);
     // Send form data to API
-    var url = "http://127.0.0.1:5000/orders";
     var xhr = new XMLHttpRequest();
+    // var url = "http://127.0.0.1:5000/orders"; // Development mode
+    // var url = "http://206.189.101.191:5000/orders"; // Production mode
+    var url = window.location.href
     xhr.open("PUT", url, true);
     xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
     xhr.send(json);

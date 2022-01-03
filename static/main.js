@@ -32,13 +32,19 @@ function handleFormSubmit(event) {
     // Get despatch date 
     const despatch_date = data.getAll('despatch_date')[0]
 
-    // Get today's and tomorrow's date
+    // Get today's and tomorrow's date - formatted with '-' separating the numbers and double digits for month and day (to match Python format) 
     const today = new Date()
-    const formatted_today = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    // const formatted_today = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); // Without double digits
+    const formatted_today = today.getFullYear()  + '-'
+                         + ('0' + (today.getMonth()+1)).slice(-2) + '-'
+                         + ('0' + today.getDate()).slice(-2) 
     console.log('todays date',formatted_today)
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1)
-    const formatted_tomorrow = tomorrow.getFullYear()+'-'+(tomorrow.getMonth()+1)+'-'+tomorrow.getDate();
+    // const formatted_tomorrow = tomorrow.getFullYear()+'-'+(tomorrow.getMonth()+1)+'-'+tomorrow.getDate(); // Without double digits
+    const formatted_tomorrow = tomorrow.getFullYear()  + '-'
+                            + ('0' + (tomorrow.getMonth()+1)).slice(-2) + '-'
+                            + ('0' + tomorrow.getDate()).slice(-2) 
     console.log('tomorrows date',formatted_tomorrow)
 
     // Validate that package: 
@@ -54,6 +60,7 @@ function handleFormSubmit(event) {
     } else if (!(despatch_date == formatted_today || despatch_date == formatted_tomorrow) ) {
         // Place error message in fail div
         console.log('Entered invalid date condition')
+        console.log(despatch_date)
         const fail = document.querySelector('.fail pre');
         fail.innerText = ' Despatch date must be today or tomorrow.'
         //Show fail message

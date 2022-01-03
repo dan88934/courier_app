@@ -10,29 +10,14 @@ from wtforms.validators import InputRequired, Length, Regexp, NumberRange, Valid
 
 from datetime import datetime, timedelta
 from random import randint
-from logging.config import dictConfig
+import logging
 
 import sys
 
-#Configuration for logging in production mode
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'formatter': 'default'
-    }},
-    'root': {
-        'level': 'DEBUG',
-        'handlers': ['wsgi']
-    }
-})
-
-
-
 app = Flask(__name__)
+
+#Add logging
+app.logger.setLevel(logging.DEBUG) 
 
 # Flask-WTF enryption key 
 app.config['SECRET_KEY'] = 'MLXH243GssUWwKdTWS7FDhdwYF56wPj8'

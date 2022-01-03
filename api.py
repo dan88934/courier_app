@@ -10,8 +10,26 @@ from wtforms.validators import InputRequired, Length, Regexp, NumberRange, Valid
 
 from datetime import datetime, timedelta
 from random import randint
+from logging.config import dictConfig
 
 import sys
+
+#Configuration for logging in production mode
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['wsgi']
+    }
+})
+
 
 
 app = Flask(__name__)

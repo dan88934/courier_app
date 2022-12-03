@@ -18,7 +18,7 @@ RUN pip install gunicorn[gevent]
 ENV FLASK_ENV=production
 
 # STEP 6: Expose the port that Flask is running on
-EXPOSE 5000 
+EXPOSE 5050
 #EXPOSE 8000
 
 # STEP 7: Run Flask!
